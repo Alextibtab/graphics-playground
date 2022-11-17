@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "graphics_playground"
+version = "0.1.0"
+description = "GUI Application with various graphical demos"
+authors = ["Alextibtab <48660540+Alextibtab@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "graphics_playground"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pygame = "^2.1.2"
+
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^0.991"
+black = "^22.10.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

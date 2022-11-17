@@ -6,9 +6,14 @@ demos like strange attractors
 
 Technologies:
     - Python
+    - Poetry
 
-Libraries:
+Dependencies:
     - Pygame
+
+Dev Dependencies:
+    - mypy (linter)
+    - black (formatter)
 
 
 Planned Features:

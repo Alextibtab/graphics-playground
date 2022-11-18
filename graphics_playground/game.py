@@ -1,0 +1,68 @@
+from typing import Tuple
+import pygame
+
+
+class Game:
+    Color = Tuple[int, int, int]
+
+    def __init__(self, title: str):
+        pygame.init()
+        self.running = True
+        self.playing = False
+        self.__UP_KEY = False
+        self.__DOWN_KEY = False
+        self.__START_KEY = False
+        self.__BACK_KEY = False
+        self.__DISPLAY_W = 720
+        self.__DISPLAY_H = 480
+        self.canvas = pygame.Surface((self.__DISPLAY_W, self.__DISPLAY_H))
+        self.window = pygame.display.set_mode(((self.__DISPLAY_W, self.__DISPLAY_H)))
+        pygame.display.set_caption(title)
+        self.font_name = pygame.font.get_default_font()
+        self.BLACK = (0, 0, 0)
+        self.WHITE = (255, 255, 255)
+
+    def game_loop(self):
+        while self.playing:
+            self.check_events()
+            if self.__START_KEY:
+                self.playing = False
+            self.canvas.fill(self.WHITE)
+            self.draw_text(
+                "Personal Project Numero Uno",
+                18,
+                self.BLACK,
+                self.__DISPLAY_W / 2,
+                self.__DISPLAY_H / 2,
+            )
+            self.window.blit(self.canvas, (0, 0))
+            pygame.display.update()
+            self.reset_keys()
+
+    def draw_text(self, text: str, size: int, color: Color, x: int, y: int):
+        font = pygame.font.Font(self.font_name, size)
+        text_surface = font.render(text, True, color)
+        text_rect = text_surface.get_rect()
+        text_rect.center = (x, y)
+        self.canvas.blit(text_surface, text_rect)
+
+    def check_events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.running = False
+                self.playing = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    self.__START_KEY = True
+                if event.key == pygame.K_BACKSPACE:
+                    self.__BACK_KEY = True
+                if event.key == pygame.K_DOWN:
+                    self.__DOWN_KEY = True
+                if event.key == pygame.K_UP:
+                    self.__UP_KEY = True
+
+    def reset_keys(self):
+        self.__UP_KEY = False
+        self.__DOWN_KEY = False
+        self.__START_KEY = False
+        self.__BACK_KEY = False

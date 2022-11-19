@@ -9,12 +9,14 @@ class Game:
 
     def __init__(self, title: str, width: int, height: int):
         pygame.init()
+        pygame.font.init()
         self.running = True
         self.playing = False
         self.UP_KEY = False
         self.DOWN_KEY = False
         self.START_KEY = False
         self.BACK_KEY = False
+        self.ESC_KEY = False
         self.__DISPLAY_W = width
         self.__DISPLAY_H = height
         self.canvas = pygame.Surface((self.__DISPLAY_W, self.__DISPLAY_H))
@@ -66,6 +68,7 @@ class Game:
                 self.running = False
                 self.playing = False
                 self.current_menu.show_menu = False
+                return
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     self.START_KEY = True
@@ -75,9 +78,12 @@ class Game:
                     self.DOWN_KEY = True
                 if event.key == pygame.K_UP:
                     self.UP_KEY = True
+                if event.key == pygame.K_ESCAPE:
+                    self.ESC_KEY = True
 
     def reset_keys(self):
         self.UP_KEY = False
         self.DOWN_KEY = False
         self.START_KEY = False
         self.BACK_KEY = False
+        self.ESC_KEY = False

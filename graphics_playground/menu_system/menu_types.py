@@ -21,7 +21,9 @@ class MainMenu(Menu):
         self.move_cursor()
         if self.game.START_KEY:
             if self.menu_options[0]["state"]:
-                self.game.playing = True
+                self.game.current_menu = DemoMenu(
+                    self.game, ["Maze Demo", "Mandelbrot Demo", "Strange Attractors"]
+                )
             if self.menu_options[1]["state"]:
                 self.game.current_menu = OptionMenu(
                     self.game, ["Option 1", "Option 2", "Option 3", "Back"]
@@ -29,6 +31,9 @@ class MainMenu(Menu):
             if self.menu_options[2]["state"]:
                 pygame.quit()
             self.show_menu = False
+        if self.game.ESC_KEY:
+            self.show_menu = False
+            pygame.quit()
 
 
 class OptionMenu(Menu):
@@ -54,4 +59,35 @@ class OptionMenu(Menu):
                 pass
             if self.menu_options[2]["state"]:
                 pygame.quit()
+            self.show_menu = False
+        if self.game.ESC_KEY:
+            self.game.current_menu = MainMenu(
+                self.game, ["Select Demo", "Options", "Exit"]
+            )
+            self.show_menu = False
+
+
+class DemoMenu(Menu):
+    def __init__(self, game, options: List[str]):
+        super().__init__(game)
+        self.menu_options = [{"value": value, "state": False} for value in options]
+        self.menu_options[0]["state"] = True
+        self._set_offsets()
+        self.option_length = len(self.menu_options)
+        self.offset -= 25
+        self.cursor_rect.midtop = (
+            self.center_x,
+            self.menu_options[0]["offset"] - 2,
+        )
+
+    def check_input(self):
+        self.move_cursor()
+        if self.game.START_KEY:
+            if self.menu_options[0]["state"]:
+                pass
+            self.show_menu = False
+        if self.game.ESC_KEY:
+            self.game.current_menu = MainMenu(
+                self.game, ["Select Demo", "Options", "Exit"]
+            )
             self.show_menu = False

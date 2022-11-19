@@ -1,11 +1,13 @@
 from typing import Tuple
 import pygame
 
+from .menu_system.main_menu import MainMenu
+
 
 class Game:
     Color = Tuple[int, int, int]
 
-    def __init__(self, title: str):
+    def __init__(self, title: str, width: int, height: int):
         pygame.init()
         self.running = True
         self.playing = False
@@ -13,14 +15,23 @@ class Game:
         self.__DOWN_KEY = False
         self.__START_KEY = False
         self.__BACK_KEY = False
-        self.__DISPLAY_W = 720
-        self.__DISPLAY_H = 480
+        self.__DISPLAY_W = width
+        self.__DISPLAY_H = height
         self.canvas = pygame.Surface((self.__DISPLAY_W, self.__DISPLAY_H))
         self.window = pygame.display.set_mode(((self.__DISPLAY_W, self.__DISPLAY_H)))
         pygame.display.set_caption(title)
         self.font_name = pygame.font.get_default_font()
+
+        self.__current_menu = MainMenu(self, ["Start Game", "Options", "Exit"])
+
         self.BLACK = (0, 0, 0)
         self.WHITE = (255, 255, 255)
+
+    def get_screen_width(self):
+        return self.__DISPLAY_W
+
+    def get_screen_height(self):
+        return self.__DISPLAY_H
 
     def game_loop(self):
         while self.playing:
@@ -46,11 +57,15 @@ class Game:
         text_rect.center = (x, y)
         self.canvas.blit(text_surface, text_rect)
 
+    def draw_menu(self):
+        self.__current_menu.draw_menu()
+
     def check_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
                 self.playing = False
+                self.__current_menu.show_menu = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     self.__START_KEY = True

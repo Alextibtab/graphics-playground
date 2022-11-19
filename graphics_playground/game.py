@@ -1,7 +1,7 @@
 from typing import Tuple
 import pygame
 
-from .menu_system.main_menu import MainMenu
+from .menu_system.menu_types import MainMenu
 
 
 class Game:
@@ -11,10 +11,10 @@ class Game:
         pygame.init()
         self.running = True
         self.playing = False
-        self.__UP_KEY = False
-        self.__DOWN_KEY = False
-        self.__START_KEY = False
-        self.__BACK_KEY = False
+        self.UP_KEY = False
+        self.DOWN_KEY = False
+        self.START_KEY = False
+        self.BACK_KEY = False
         self.__DISPLAY_W = width
         self.__DISPLAY_H = height
         self.canvas = pygame.Surface((self.__DISPLAY_W, self.__DISPLAY_H))
@@ -22,7 +22,7 @@ class Game:
         pygame.display.set_caption(title)
         self.font_name = pygame.font.get_default_font()
 
-        self.__current_menu = MainMenu(self, ["Start Game", "Options", "Exit"])
+        self.current_menu = MainMenu(self, ["Select Demo", "Options", "Exit"])
 
         self.BLACK = (0, 0, 0)
         self.WHITE = (255, 255, 255)
@@ -36,7 +36,7 @@ class Game:
     def game_loop(self):
         while self.playing:
             self.check_events()
-            if self.__START_KEY:
+            if self.START_KEY:
                 self.playing = False
             self.canvas.fill(self.WHITE)
             self.draw_text(
@@ -58,26 +58,26 @@ class Game:
         self.canvas.blit(text_surface, text_rect)
 
     def draw_menu(self):
-        self.__current_menu.draw_menu()
+        self.current_menu.draw_menu()
 
     def check_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
                 self.playing = False
-                self.__current_menu.show_menu = False
+                self.current_menu.show_menu = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
-                    self.__START_KEY = True
+                    self.START_KEY = True
                 if event.key == pygame.K_BACKSPACE:
-                    self.__BACK_KEY = True
+                    self.BACK_KEY = True
                 if event.key == pygame.K_DOWN:
-                    self.__DOWN_KEY = True
+                    self.DOWN_KEY = True
                 if event.key == pygame.K_UP:
-                    self.__UP_KEY = True
+                    self.UP_KEY = True
 
     def reset_keys(self):
-        self.__UP_KEY = False
-        self.__DOWN_KEY = False
-        self.__START_KEY = False
-        self.__BACK_KEY = False
+        self.UP_KEY = False
+        self.DOWN_KEY = False
+        self.START_KEY = False
+        self.BACK_KEY = False

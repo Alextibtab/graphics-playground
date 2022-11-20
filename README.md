@@ -28,9 +28,12 @@ to change the number of iterations and exponent used in the equation.
 
 #### Hotkeys
 You can use the - and + keys to decrease or increase the amount of iterations
+
 To swap between modifying the iterations or exponent press 'i' which will swap
 the value you are editing.
+
 To regenerate the mandelbrot with tweaked parameters press the enter key.
+
 To view the julia set for a certain point on the mandelbrot simply left
 click on the desired point and wait for the julia set to generate.
 

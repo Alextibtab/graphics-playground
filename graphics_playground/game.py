@@ -18,6 +18,10 @@ class Game:
         self.START_KEY = False
         self.BACK_KEY = False
         self.ESC_KEY = False
+        self.PLUS_KEY = False
+        self.MINUS_KEY = False
+        self.I_KEY = False
+        self.LEFT_CLICK = False
         self.__DISPLAY_W = width
         self.__DISPLAY_H = height
         self.canvas = pygame.Surface((self.__DISPLAY_W, self.__DISPLAY_H))
@@ -59,6 +63,7 @@ class Game:
                 self.running = False
                 self.playing = False
                 self.current_menu.show_menu = False
+                self.demo.show_demo = False
                 return
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
@@ -71,6 +76,16 @@ class Game:
                     self.UP_KEY = True
                 if event.key == pygame.K_ESCAPE:
                     self.ESC_KEY = True
+                if event.key == pygame.K_EQUALS:
+                    self.PLUS_KEY = True
+                if event.key == pygame.K_MINUS:
+                    self.MINUS_KEY = True
+                if event.key == pygame.K_i:
+                    self.I_KEY = True
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_presses = pygame.mouse.get_pressed()
+                if mouse_presses[0]:
+                    self.LEFT_CLICK = True
 
     def reset_keys(self):
         self.UP_KEY = False
@@ -78,3 +93,7 @@ class Game:
         self.START_KEY = False
         self.BACK_KEY = False
         self.ESC_KEY = False
+        self.PLUS_KEY = False
+        self.MINUS_KEY = False
+        self.I_KEY = False
+        self.LEFT_CLICK = False

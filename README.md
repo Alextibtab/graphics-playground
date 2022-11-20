@@ -24,7 +24,7 @@ demos like strange attractors
 This application features a mandelbrot demo which can be customised using hotkeys
 to change the number of iterations and exponent used in the equation.
 
-![Mandelbrot Set](https://github.com/Alextibtab/graphics-playground/raw/master/examples/mandelbrot/mandelbrot.jpg)
+![Mandelbrot Set](https://github.com/Alextibtab/graphics-playground/raw/master/examples/mandelbrot/mandelbrot.JPG)
 
 #### Hotkeys
 You can use the - and + keys to decrease or increase the amount of iterations

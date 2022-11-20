@@ -3,6 +3,7 @@ from typing import List
 import pygame
 
 from .menu import Menu
+from ..demo.mandelbrot import Mandelbrot
 
 
 class MainMenu(Menu):
@@ -83,8 +84,9 @@ class DemoMenu(Menu):
     def check_input(self):
         self.move_cursor()
         if self.game.START_KEY:
-            if self.menu_options[0]["state"]:
-                pass
+            if self.menu_options[1]["state"]:
+                self.game.demo = Mandelbrot(self.game)
+                self.game.playing = True
             self.show_menu = False
         if self.game.ESC_KEY:
             self.game.current_menu = MainMenu(

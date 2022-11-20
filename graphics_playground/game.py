@@ -12,6 +12,7 @@ class Game:
         pygame.font.init()
         self.running = True
         self.playing = False
+        self.demo = None
         self.UP_KEY = False
         self.DOWN_KEY = False
         self.START_KEY = False
@@ -38,19 +39,9 @@ class Game:
     def game_loop(self):
         while self.playing:
             self.check_events()
-            if self.START_KEY:
+            if self.ESC_KEY:
                 self.playing = False
-            self.canvas.fill(self.WHITE)
-            self.draw_text(
-                "Personal Project Numero Uno",
-                18,
-                self.BLACK,
-                self.__DISPLAY_W / 2,
-                self.__DISPLAY_H / 2,
-            )
-            self.window.blit(self.canvas, (0, 0))
-            pygame.display.update()
-            self.reset_keys()
+            self.demo.draw()
 
     def draw_text(self, text: str, size: int, color: Color, x: int, y: int):
         font = pygame.font.Font(self.font_name, size)

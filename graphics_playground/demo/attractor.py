@@ -19,6 +19,7 @@ class Attractor:
         while self.show_demo:
             self.attractor.a += 0.001
             self.game.check_events()
+            self.check_input()
             self.generate_points()
             self.draw_points()
             self.blit_screen()
@@ -42,6 +43,11 @@ class Attractor:
         self.game.window.blit(self.game.canvas, (0, 0))
         pygame.display.update()
         self.game.reset_keys()
+
+    def check_input(self):
+        if self.game.ESC_KEY:
+            self.show_demo = False
+            self.game.playing = False
 
 
 class Clifford:

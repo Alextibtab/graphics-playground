@@ -4,20 +4,14 @@ Boot.dev personal project this "graphics playground" will
 incorporate the maze solver and then add other cool graphic
 demos like strange attractors 
 
-### Technologies:
-- Python
-- Poetry
-
-### Dependencies:
-- Pygame
-
-### Dev Dependencies:
-- mypy (linter)
-- black (formatter)
-
 ## Demos
 
 ### Maze Solver
+
+A maze solving demo that just brute forces through the maze unti
+a path is found
+
+![Maze Demo](https://github.com/Alextibtab/graphics-playground/raw/master/examples/maze/solved_maze.JPG)
 
 ### Mandelbrot
 
@@ -41,10 +35,30 @@ click on the desired point and wait for the julia set to generate.
 
 ### Attractors
 
-### Planned Features:
-- Menu state system to support multiple windows and switching between them
-- Start screen where you can select the different demos
+A simple demo showcasing some attractors visualised
+
+![Clifford Attractor](https://github.com/Alextibtab/graphics-playground/raw/master/examples/attractors/clifford_attractor.JPG)
+
+### Menu System:
+This application has a working menu system that allows to change between the different demos without restarting the whole program
+
+#### Main Menu
+![Main Menu](https://github.com/Alextibtab/graphics-playground/raw/master/examples/menu_system/main_menu.JPG)
+
+#### Demo Menu
+![Demo Menu](https://github.com/Alextibtab/graphics-playground/raw/master/examples/menu_system/demo_menu.JPG)
 
 ### Advanced Goals:
 - A* pathfinding implemented in the maze solver
 - pretty start screen with random mini demo each time the app launches
+
+### Technologies:
+- Python
+- Poetry
+
+### Dependencies:
+- Pygame
+
+### Dev Dependencies:
+- mypy (linter)
+- black (formatter)

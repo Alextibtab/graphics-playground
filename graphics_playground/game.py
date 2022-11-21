@@ -42,6 +42,7 @@ class Game:
 
     def game_loop(self):
         while self.playing:
+            self.canvas.fill(self.BLACK)
             self.check_events()
             if self.ESC_KEY:
                 self.playing = False

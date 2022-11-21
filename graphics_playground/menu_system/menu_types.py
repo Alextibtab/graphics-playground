@@ -5,6 +5,7 @@ import pygame
 from .menu import Menu
 from ..demo.mandelbrot import Mandelbrot
 from ..demo.attractor import Attractor
+from ..demo.maze import Maze
 
 
 class MainMenu(Menu):
@@ -85,6 +86,19 @@ class DemoMenu(Menu):
     def check_input(self):
         self.move_cursor()
         if self.game.START_KEY:
+            if self.menu_options[0]["state"]:
+                self.game.demo = Maze(
+                    self.game,
+                    self.center_x - 300,
+                    self.center_y,
+                    25,
+                    25,
+                    10,
+                    10,
+                    False,
+                    1,
+                )
+                self.game.playing = True
             if self.menu_options[1]["state"]:
                 self.game.demo = Mandelbrot(self.game)
                 self.game.playing = True

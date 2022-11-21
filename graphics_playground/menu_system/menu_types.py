@@ -4,6 +4,7 @@ import pygame
 
 from .menu import Menu
 from ..demo.mandelbrot import Mandelbrot
+from ..demo.attractor import Attractor
 
 
 class MainMenu(Menu):
@@ -86,6 +87,9 @@ class DemoMenu(Menu):
         if self.game.START_KEY:
             if self.menu_options[1]["state"]:
                 self.game.demo = Mandelbrot(self.game)
+                self.game.playing = True
+            if self.menu_options[2]["state"]:
+                self.game.demo = Attractor(self.game)
                 self.game.playing = True
             self.show_menu = False
         if self.game.ESC_KEY:

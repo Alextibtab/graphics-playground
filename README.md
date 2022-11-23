@@ -40,7 +40,7 @@ A simple demo showcasing some attractors visualised
 ![Clifford Attractor](https://github.com/Alextibtab/graphics-playground/raw/master/examples/attractors/clifford_attractor.JPG)
 
 ### Menu System:
-This application has a working menu system that allows to change between the different demos without restarting the whole program
+This application has a working menu system that allows you to change between the different demos without restarting the whole program
 
 #### Main Menu
 ![Main Menu](https://github.com/Alextibtab/graphics-playground/raw/master/examples/menu_system/main_menu.JPG)
